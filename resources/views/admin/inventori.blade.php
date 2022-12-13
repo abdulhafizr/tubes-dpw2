@@ -1,8 +1,8 @@
 @extends("admin.template")
 
-@section("header_title", "Guru")
+@section("header_title", "Inventori")
 @section("header_menu", "Dashboard")
-@section("header_submenu", "Guru")
+@section("header_submenu", "Inventori")
 
 @section("content")
 

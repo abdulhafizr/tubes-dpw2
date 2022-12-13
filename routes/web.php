@@ -23,4 +23,19 @@ Route::prefix("/dashboard")->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     });
+    Route::get('/pelajaran', function () {
+        return view('admin.pelajaran');
+    });
+    Route::get('/ruangan', function () {
+        return view('admin.ruangan');
+    });
+    Route::get('/inventori', function () {
+        return view('admin.inventori');
+    });
+    Route::get('/guru', function () {
+        return view('admin.guru');
+    });
+    Route::get('/siswa', function () {
+        return view('admin.siswa');
+    });
 });

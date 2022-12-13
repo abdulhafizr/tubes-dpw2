@@ -1,5 +1,9 @@
 @extends("admin.template")
 
+@section("header_title", "Dashboard")
+@section("header_menu", "Dashboard")
+@section("header_submenu", "")
+
 @section("content")
     <div class="container-fluid">
         <div class="row">
