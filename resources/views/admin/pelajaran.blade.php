@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div class="card card-primary">
+                <div class="card card-default">
                     <form>
                         <div class="card-header">
                             <h3 class="card-title">Form Input Pelajaran</h3>
