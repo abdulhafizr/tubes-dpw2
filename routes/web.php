@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/dashboard');
 
 Route::prefix("/dashboard")->group(function () {
+
+    // GET METHOD
     Route::get('/', function () {
         return view('admin.dashboard');
     });
-    Route::get('/pelajaran', function () {
-        return view('admin.pelajaran');
-    });
+    Route::get('/pelajaran', [CourseController::class, 'create']);
     Route::get('/ruangan', function () {
         return view('admin.ruangan');
     });
@@ -38,4 +39,7 @@ Route::prefix("/dashboard")->group(function () {
     Route::get('/siswa', function () {
         return view('admin.siswa');
     });
+
+    // POST
+    Route::post('/pelajaran', [CourseController::class, 'store']);
 });

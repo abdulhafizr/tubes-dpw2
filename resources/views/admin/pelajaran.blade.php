@@ -9,15 +9,16 @@
         <div class="row">
             <div class="col">
                 <div class="card card-default">
-                    <form>
+                    <form method="post" action="/dashboard/pelajaran">
+                        @csrf
                         <div class="card-header">
                             <h3 class="card-title">Form Input Pelajaran</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Pelajaran</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                <label for="nama-pelajaran">Nama Pelajaran</label>
+                                <input type="text" class="form-control" id="nama-pelajaran" name="nama_pelajaran"
                                        placeholder="Masukan nama pelajaran">
                             </div>
                             <div class="row">
@@ -25,7 +26,7 @@
                                     <div class="form-group">
                                         <label>Jadwal Pelajaran Mulai</label>
                                         <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input"
+                                            <input type="text" class="form-control datetimepicker-input" name="jam_mulai"
                                                    data-target="#timepicker">
                                             <div class="input-group-append" data-target="#timepicker"
                                                  data-toggle="datetimepicker">
@@ -39,7 +40,7 @@
                                     <div class="form-group">
                                         <label>Jadwal Pelajaran Selesai</label>
                                         <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input"
+                                            <input type="text" class="form-control datetimepicker-input" name="jam_selesai"
                                                    data-target="#timepicker">
                                             <div class="input-group-append" data-target="#timepicker"
                                                  data-toggle="datetimepicker">
@@ -51,13 +52,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Kelas</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                <label for="nama-kelas">Nama Kelas</label>
+                                <input type="text" class="form-control" id="nama-kelas" name="nama_kelas"
                                        placeholder="Masukan nama kelas">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Guru</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                <label for="nama-guru">Nama Guru</label>
+                                <input type="text" class="form-control" id="nama-guru" name="nama_guru"
                                        placeholder="Masukan nama guru">
                             </div>
                         </div>
