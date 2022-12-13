@@ -58,15 +58,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/guru" class="nav-link {{Request::path() == "dashboard/guru" ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>Guru</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="/dashboard/siswa" class="nav-link {{Request::path() == "dashboard/siswa" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Siswa</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/dashboard/guru" class="nav-link {{Request::path() == "dashboard/guru" ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                        <p>Guru</p>
                     </a>
                 </li>
                 <li class="nav-item">
