@@ -16,7 +16,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nomor Induk Siswa (NIS) Siswa</label>
+                                <label for="exampleInputEmail1">Nomor Induk Siswa (NIS)</label>
                                 <input type="number" class="form-control" id="exampleInputEmail1"
                                        placeholder="Masukan nis siswa">
                             </div>
@@ -39,6 +39,11 @@
                                 <label for="exampleInputEmail1">Tempat Lahir Siswa</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                        placeholder="Masukan tempat lahir siswa">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tanggal Lahir Siswa</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                       placeholder="Masukan tanggal lahir siswa">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">No Telepon Siswa</label>
