@@ -6,7 +6,9 @@ use App\Models\Course;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class CourseController extends Controller
 {
@@ -17,7 +19,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-
+        $courses = Course::all();
+        return view('admin.courses.index')->with('courses', $courses);
     }
 
     /**
@@ -28,23 +31,34 @@ class CourseController extends Controller
     public function create()
     {
         $courses = Course::all();
-        return view("admin.pelajaran", ["courses" => $courses]);
+        return view("admin.courses.create", ["courses" => $courses]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
      */
-    public function store(Request $request)
+    public function store(Request $request): Redirector|RedirectResponse|Application
     {
+        $request->validate([
+            'nama_pelajaran' => 'required',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+            'nama_kelas' => 'required',
+            'nama_guru' => 'required'
+        ]);
+
         $course = new Course();
-        $course->name = $request->nama_pelajaran;
-        $course->class_name = $request->nama_kelas;
-        $course->teacher_name = $request->nama_guru;
+        $course->setAttribute('name', $request->get('nama_pelajaran'));
+        $course->setAttribute('start_time', $request->get('jam_mulai'));
+        $course->setAttribute('end_time', $request->get('jam_selesai'));
+        $course->setAttribute('name', $request->get('nama_pelajaran'));
+        $course->setAttribute('class_name', $request->get('nama_kelas'));
+        $course->setAttribute('teacher_name', $request->get('nama_guru'));
         $course->save();
-        return redirect('/dashboard/pelajaran');
+        return redirect('/dashboard/courses');
     }
 
     /**
@@ -72,7 +86,7 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

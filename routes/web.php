@@ -25,21 +25,26 @@ Route::prefix("/dashboard")->group(function () {
     // GET METHOD
     Route::get('/', function () {
         return view('admin.dashboard');
+    })->name('dashboard');
+
+
+    Route::controller(CourseController::class)->group(function () {
+        Route::get('/course', 'index')->name('course.index');
+        Route::get('/course/add', 'create')->name('course.create');
+        Route::post('/course/add', 'store')->name('course.store');
     });
-    Route::get('/pelajaran', [CourseController::class, 'create']);
-    Route::get('/ruangan', function () {
+    Route::get('/class', function () {
         return view('admin.ruangan');
-    });
-    Route::get('/inventori', function () {
+    })->name('class');
+    Route::get('/inventory', function () {
         return view('admin.inventori');
-    });
-    Route::get('/guru', function () {
+    })->name('inventory');
+    Route::get('/teacher', function () {
         return view('admin.guru');
-    });
-    Route::get('/siswa', function () {
+    })->name('teacher');
+    Route::get('/student', function () {
         return view('admin.siswa');
-    });
+    })->name('student');
 
     // POST
-    Route::post('/pelajaran', [CourseController::class, 'store']);
 });

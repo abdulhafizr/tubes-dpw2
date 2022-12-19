@@ -34,37 +34,37 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="/dashboard" class="nav-link {{Request::path() == "dashboard" ? 'active' : ''}}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{Request::path() == "dashboard" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/pelajaran" class="nav-link {{Request::path() == "dashboard/pelajaran" ? 'active' : ''}}">
+                    <a href="{{ route('course.index') }}" class="nav-link {{Request::path() == "dashboard/course" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-book-open"></i>
                         <p>Pelajaran</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/ruangan" class="nav-link {{Request::path() == "dashboard/ruangan" ? 'active' : ''}}">
+                    <a href="{{ route('class') }}" class="nav-link {{Request::path() == "dashboard/class" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-school"></i>
                         <p>Ruangan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/inventori" class="nav-link {{Request::path() == "dashboard/inventori" ? 'active' : ''}}">
+                    <a href="{{ route('inventory') }}" class="nav-link {{Request::path() == "dashboard/inventory" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>Inventori</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/siswa" class="nav-link {{Request::path() == "dashboard/siswa" ? 'active' : ''}}">
+                    <a href="{{ route('student') }}" class="nav-link {{Request::path() == "dashboard/student" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Siswa</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/guru" class="nav-link {{Request::path() == "dashboard/guru" ? 'active' : ''}}">
+                    <a href="{{ route('teacher') }}" class="nav-link {{Request::path() == "dashboard/teacher" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>Guru</p>
                     </a>
