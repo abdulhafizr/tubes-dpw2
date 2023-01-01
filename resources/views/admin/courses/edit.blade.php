@@ -15,10 +15,10 @@
         <div class="row">
             <div class="col">
                 <div class="card card-default">
-                    <form method="post" action="{{ route('course.store') }}">
+                    <form method="post" action="{{ route('course.update', ['course' => $course]) }}">
 
                         @csrf
-                        @method('post')
+                        @method('put')
 
                         <div class="card-header">
                             <h3 class="card-title">Form Input Pelajaran</h3>

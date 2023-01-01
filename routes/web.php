@@ -26,13 +26,15 @@ Route::prefix("/dashboard")->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-
-
-    Route::controller(CourseController::class)->group(function () {
-        Route::get('/course', 'index')->name('course.index');
-        Route::get('/course/add', 'create')->name('course.create');
-        Route::post('/course/add', 'store')->name('course.store');
-    });
+//
+//
+//    Route::controller(CourseController::class)->group(function () {
+//        Route::get('/course', 'index')->name('course.index');
+//        Route::get('/course/add', 'create')->name('course.create');
+//        Route::get('/course/{course}', 'edit');
+//        Route::put('/course/{course}', 'update');
+//        Route::post('/course/add', 'store')->name('course.store');
+//    });
     Route::get('/class', function () {
         return view('admin.ruangan');
     })->name('class');
@@ -47,4 +49,6 @@ Route::prefix("/dashboard")->group(function () {
     })->name('student');
 
     // POST
+    Route::resource('/course', CourseController::class);
 });
+

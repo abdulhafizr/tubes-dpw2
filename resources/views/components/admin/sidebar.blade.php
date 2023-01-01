@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('course.index') }}" class="nav-link {{Request::path() == "dashboard/course" ? 'active' : ''}}">
+                    <a href="{{ route('course.index') }}" class="nav-link {{ str_contains(Request::path(), 'dashboard/course') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book-open"></i>
                         <p>Pelajaran</p>
                     </a>
@@ -48,7 +48,7 @@
                 <li class="nav-item">
                     <a href="{{ route('class') }}" class="nav-link {{Request::path() == "dashboard/class" ? 'active' : ''}}">
                         <i class="nav-icon fas fa-school"></i>
-                        <p>Ruangan</p>
+                        <p>Kelas</p>
                     </a>
                 </li>
                 <li class="nav-item">

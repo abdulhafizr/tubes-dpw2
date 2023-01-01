@@ -66,6 +66,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 
+{{-- Sweet Alert --}}
+
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -75,6 +77,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE Demo -->
 <!-- App -->
 <script src="/js/app.js"></script>
+
+@include('sweetalert::alert')
 
 {{-- Custom Javascript --}}
 @yield('script')
