@@ -33,7 +33,6 @@ class CourseController extends Controller
     public function create(): View|Factory|Application
     {
         return view("admin.courses.create", [
-            'title' => 'INPUT',
             "course" => new Course()
         ]);
     }
@@ -48,9 +47,18 @@ class CourseController extends Controller
     {
         $this->validate_form($request);
         $course = new Course();
-        $this->insert_model($course, $request);
-        toast('Pelajaran berhasil ditambah!', 'success');
-        return redirect(route('course.index'));
+        $insert_result = $this->insert_model($course, $request);
+        if ($insert_result) {
+            $type = 'success';
+            $title = 'Pelajaran berhasil ditambah!';
+            toast($title, $type);
+            return redirect(route('course.index'));
+        } else {
+            $type = 'error';
+            $title = 'Pelajaran gagal ditambah!';
+            toast($title, $type);
+            return back();
+        }
     }
 
     /**
@@ -85,24 +93,32 @@ class CourseController extends Controller
      * @param int $id
      * @return Application|Redirector|RedirectResponse
      */
-    public function update(Request $request, $id): Redirector|RedirectResponse|Application
+    public function update(Request $request, Course $course): Redirector|RedirectResponse|Application
     {
         $this->validate_form($request);
-        $course = Course::find($id);
-        $this->insert_model($course, $request);
-        toast('Pelajaran berhasil diedit!', 'success');
-        return redirect(route('course.index'));
+        $update_result = $this->insert_model($course, $request);
+        if ($update_result) {
+            $type = 'success';
+            $title = 'Pelajaran berhasil diupdate!';
+            toast($title, $type);
+            return redirect(route('course.index'));
+        } else {
+            $type = 'error';
+            $title = 'Pelajaran gagal diupdate!';
+            toast($title, $type);
+            return back();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Course $course
      * @return RedirectResponse
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(Course $course): RedirectResponse
     {
-        $course = Course::find($id)->delete();
+        $course = $course->delete();
         if ($course) {
             $type = 'success';
             $title = 'Pelajaran berhasil dihapus!';
@@ -130,11 +146,11 @@ class CourseController extends Controller
     }
 
     /**
-     * @param $course
+     * @param Course $course
      * @param Request $request
-     * @return void
+     * @return bool
      */
-    public function insert_model($course, Request $request): void
+    public function insert_model(Course $course, Request $request): bool
     {
         $course->setAttribute('name', $request->get('nama_pelajaran'));
         $course->setAttribute('start_time', $request->get('jam_mulai'));
@@ -142,6 +158,6 @@ class CourseController extends Controller
         $course->setAttribute('name', $request->get('nama_pelajaran'));
         $course->setAttribute('class_name', $request->get('nama_kelas'));
         $course->setAttribute('teacher_name', $request->get('nama_guru'));
-        $course->save();
+        return $course->save();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,29 +27,22 @@ Route::prefix("/dashboard")->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-//
-//
-//    Route::controller(CourseController::class)->group(function () {
-//        Route::get('/course', 'index')->name('course.index');
-//        Route::get('/course/add', 'create')->name('course.create');
-//        Route::get('/course/{course}', 'edit');
-//        Route::put('/course/{course}', 'update');
-//        Route::post('/course/add', 'store')->name('course.store');
-//    });
+
     Route::get('/class', function () {
         return view('admin.ruangan');
     })->name('class');
     Route::get('/inventory', function () {
         return view('admin.inventori');
     })->name('inventory');
-    Route::get('/teacher', function () {
-        return view('admin.guru');
-    })->name('teacher');
     Route::get('/student', function () {
         return view('admin.siswa');
     })->name('student');
 
-    // POST
+
+    // Course
     Route::resource('/course', CourseController::class);
+
+    // Teacher
+    Route::resource('/teacher', TeacherController::class);
 });
 
