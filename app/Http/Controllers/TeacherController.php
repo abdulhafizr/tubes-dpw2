@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 class TeacherController extends Controller
 {
 
-    private $genders = [
+    private array $genders = [
         'L' => 'Laki-Laki',
         'P' => 'Perempuan'
     ];
@@ -105,7 +104,7 @@ class TeacherController extends Controller
     public function update(Request $request, Teacher $teacher): Redirector|RedirectResponse|Application
     {
         $this->validate_form($request);
-        $update_result = $this->insert_model($teacher, $request);
+        $update_result = $this->insert_model($teacher, $request, true);
         if ($update_result) {
             $type = 'success';
             $title = 'Guru berhasil diupdate!';
@@ -164,7 +163,7 @@ class TeacherController extends Controller
      * @param Request $request
      * @return bool
      */
-    public function insert_model(Teacher $teacher, Request $request): bool
+    public function insert_model(Teacher $teacher, Request $request, bool $isUpdate = false): bool
     {
         $teacher->setAttribute('nip', $request->get('nip'));
         $teacher->setAttribute('name', $request->get('name'));
@@ -175,10 +174,12 @@ class TeacherController extends Controller
         $teacher->setAttribute('gender', $request->get('gender'));
 
         if ($request->file('photo')) {
+            $clear_path = array_slice(explode('/', $teacher->photo), 1);
+            Storage::delete(join('/', $clear_path));
             $path = $request->file('photo')->store('teachers/photo');
             $teacher->setAttribute('photo', 'storage/' . $path);
         } else {
-            $teacher->setAttribute('photo', 'img/default-avatar.svg');
+            if (!$isUpdate) $teacher->setAttribute('photo', 'img/default-avatar.svg');
         }
         return $teacher->save();
     }

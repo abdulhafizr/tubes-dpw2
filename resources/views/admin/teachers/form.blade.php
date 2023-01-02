@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="col-md-4 p-4">
-        <img src="{{ asset('img/default-avatar.svg') }}" id="photo-preview" width="100%" height="auto" class="teacher-photo img-fluid img-thumbnail" alt="Foto Guru">
+        <img src="{{ asset($teacher->photo ?? 'img/default-avatar.svg') }}" id="photo-preview" width="100%" height="auto" class="teacher-photo img-fluid img-thumbnail" alt="Foto Guru">
         <div class="form-group">
             <div class="input-group mt-2">
                 <div class="custom-file">
