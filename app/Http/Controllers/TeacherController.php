@@ -128,10 +128,8 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher): Response|RedirectResponse
     {
         $result = $teacher->delete();
-        if (!($teacher->photo == 'img/default-avatar.svg')) {
-            $clear_path = array_slice(explode('/', $teacher->photo), 1);
-            Storage::delete(join('/', $clear_path));
-        }
+        $clear_path = array_slice(explode('/', $teacher->photo), 1);
+        Storage::delete(join('/', $clear_path));
         if ($result) {
             $type = 'success';
             $title = 'Guru berhasil dihapus!';

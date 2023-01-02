@@ -34,7 +34,7 @@ class TeacherFactory extends Factory
             'date_of_birth' => $this->faker->date(),
             'phone' => $this->faker->phoneNumber(),
             'gender' => 'L',
-            'photo' => 'storage/teachers/photo/' . $default_photos[$this->faker->numberBetween(0, 7)]
+            'photo' => 'img/' . $default_photos[$this->faker->numberBetween(0, 7)]
         ];
     }
 }
