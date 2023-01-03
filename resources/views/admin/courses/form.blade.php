@@ -90,10 +90,7 @@
                 const teacherId = teacherSelector.val();
                 fetch(`/dashboard/teacher/photo?id=${teacherId}`)
                     .then(response => response.json())
-                    .then(data => {
-                        $('#photo-preview').attr('src', '{{ url('/') }}' + '/' + data.photo)
-                        console.log('{{ url('/') }}' + '/' + data.photo)
-                    })
+                    .then(data => $('#photo-preview').attr('src', '{{ url('/') }}' + '/' + data.photo))
             })
         });
     </script>
