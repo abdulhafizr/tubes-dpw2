@@ -1,6 +1,5 @@
 @section('head')
-    <link rel="stylesheet"
-          href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
 @endsection
 
 <div class="row">
@@ -8,9 +7,9 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="name">Nama Pelajaran</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                <input type="text" class="form-control @error('course_name') is-invalid @enderror" id="name" name="name"
                        placeholder="Nama" value="{{ old('name', $course->name) }}">
-                @error('nama_pelajaran')
+                @error('name')
                 <span class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -49,23 +48,24 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="teacher_name">Nama Guru</label>
-                <input type="text" class="form-control @error('teacher_name') is-invalid @enderror" id="teacher_name" name="teacher_name"
-                       placeholder="Masukan nama guru" value="{{ old('teacher_name', $course->teacher_name) }}">
-                @error('teacher_name')
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="teacher_id">Nama Guru</label>
+                    </div>
+                    <select class="custom-select @error('teacher_id') is-invalid @enderror" id="teacher_id" name="teacher_id">
+                        @foreach($teachers as $teacher)
+                            <option value="{{ $teacher->id }}" {{ $teacher->id == $course->teacher_id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @error('teacher_id')
                 <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
         </div>
     </div>
     <div class="col-md-4 p-4">
-        <img src="{{ asset('img/default-avatar.svg') }}" id="photo-preview" width="100%" height="auto" class="teacher-photo img-fluid img-thumbnail" alt="Foto Guru">
-        <div class="input-group mt-2">
-            <div class="custom-file">
-                <input type="file" accept="image/png, image/jpeg"  name="photo" class="custom-file-input" id="photo" aria-describedby="photoAddon">
-                <label class="custom-file-label" for="photo">Choose file</label>
-            </div>
-        </div>
+        <img src="{{ asset($course-> teacher->photo ?? 'img/default-avatar.svg') }}" id="photo-preview" width="100%" height="auto" class="teacher-photo img-thumbnail" alt="Foto Guru">
     </div>
 </div>
 
@@ -85,6 +85,16 @@
                 }
                 reader.readAsDataURL(this.files[0]);
             });
+            const teacherSelector = $('#teacher_id');
+            teacherSelector.change(function () {
+                const teacherId = teacherSelector.val();
+                fetch(`/dashboard/teacher/photo?id=${teacherId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        $('#photo-preview').attr('src', '{{ url('/') }}' + '/' + data.photo)
+                        console.log('{{ url('/') }}' + '/' + data.photo)
+                    })
+            })
         });
     </script>
 @endsection

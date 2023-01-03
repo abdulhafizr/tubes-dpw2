@@ -140,6 +140,13 @@ class TeacherController extends Controller
         return back();
     }
 
+    public function photo(Request $request) {
+        $teacher = Teacher::query()->find($request->id);
+        return response()->json([
+            'photo' => $teacher->photo
+        ]);
+    }
+
     /**
      * @param Request $request
      * @return array

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Teacher;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -33,7 +34,8 @@ class CourseController extends Controller
     public function create(): View|Factory|Application
     {
         return view("admin.courses.create", [
-            "course" => new Course()
+            "course" => new Course(),
+            "teachers" => Teacher::query()->orderBy('name', 'asc')->get()
         ]);
     }
 
@@ -82,7 +84,8 @@ class CourseController extends Controller
     {
         return view('admin.courses.edit', [
             'title' => 'EDIT',
-            'course' => $course
+            'course' => $course,
+            "teachers" => Teacher::query()->orderBy('name', 'asc')->get()
         ]);
     }
 
@@ -137,11 +140,11 @@ class CourseController extends Controller
     public function validate_form(Request $request): array
     {
         return $request->validate([
-            'nama_pelajaran' => 'required',
-            'jam_mulai' => 'required',
-            'jam_selesai' => 'required',
-            'nama_kelas' => 'required',
-            'nama_guru' => 'required'
+            'teacher_id' => 'required',
+            'name' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'class_name' => 'required',
         ]);
     }
 
@@ -152,12 +155,11 @@ class CourseController extends Controller
      */
     public function insert_model(Course $course, Request $request): bool
     {
-        $course->setAttribute('name', $request->get('nama_pelajaran'));
-        $course->setAttribute('start_time', $request->get('jam_mulai'));
-        $course->setAttribute('end_time', $request->get('jam_selesai'));
-        $course->setAttribute('name', $request->get('nama_pelajaran'));
-        $course->setAttribute('class_name', $request->get('nama_kelas'));
-        $course->setAttribute('teacher_name', $request->get('nama_guru'));
+        $course->setAttribute('teacher_id', $request->get('teacher_id'));
+        $course->setAttribute('name', $request->get('name'));
+        $course->setAttribute('start_time', $request->get('start_time'));
+        $course->setAttribute('end_time', $request->get('end_time'));
+        $course->setAttribute('class_name', $request->get('class_name'));
         return $course->save();
     }
 }

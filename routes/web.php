@@ -43,6 +43,7 @@ Route::prefix("/dashboard")->group(function () {
     Route::resource('/course', CourseController::class);
 
     // Teacher
+    Route::get('/teacher/photo', [TeacherController::class, 'photo'])->name('teacher.photo');
     Route::resource('/teacher', TeacherController::class);
 });
 
