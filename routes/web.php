@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -28,10 +29,6 @@ Route::prefix("/dashboard")->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-
-    Route::get('/class', function () {
-        return view('admin.ruangan');
-    })->name('class');
     Route::get('/inventory', function () {
         return view('admin.inventori');
     })->name('inventory');
@@ -42,6 +39,9 @@ Route::prefix("/dashboard")->group(function () {
 
     // Course
     Route::resource('/course', CourseController::class);
+
+    // ClassRoom
+    Route::resource('/class-room', ClassRoomController::class);
 
     // Student
     Route::get('/student/photo', [StudentController::class, 'photo'])->name('student.photo');

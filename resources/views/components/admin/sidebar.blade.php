@@ -46,9 +46,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('class') }}" class="nav-link {{Request::is('dashboard/class*') ? 'active' : ''}}">
+                    <a href="{{ route('class-room.index') }}" class="nav-link {{Request::is('dashboard/class*') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-school"></i>
-                        <p>Kelas</p>
+                        <p>Ruang Kelas</p>
                     </a>
                 </li>
                 <li class="nav-item">

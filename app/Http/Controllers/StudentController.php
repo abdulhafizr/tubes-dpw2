@@ -107,7 +107,7 @@ class StudentController extends Controller
      * @param Student $student
      * @return Application|Redirector|RedirectResponse
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Student $student): Redirector|RedirectResponse|Application
     {
         $this->validate_form($request);
         $result = $this->insert_model($student, $request, true);
@@ -130,7 +130,7 @@ class StudentController extends Controller
      * @param Student $student
      * @return RedirectResponse|Response
      */
-    public function destroy(Student $student)
+    public function destroy(Student $student): Response|RedirectResponse
     {
         $result = $student->delete();
         $clear_path = array_slice(explode('/', $student->photo), 1);
