@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Teacher>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Student>
  */
-class TeacherFactory extends Factory
+class StudentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -27,7 +27,8 @@ class TeacherFactory extends Factory
             'user8-128x128.jpg'
         ];
         return [
-            'nip' => $this->faker->randomNumber(5, true),
+            'teacher_id' => $this->faker->numberBetween(1, 25),
+            'nis' => $this->faker->randomNumber(5, true),
             'name' => $this->faker->name(),
             'address' => $this->faker->address(),
             'place_of_birth' => $this->faker->city(),

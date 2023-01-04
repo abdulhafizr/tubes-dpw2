@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,10 @@ Route::prefix("/dashboard")->group(function () {
 
     // Course
     Route::resource('/course', CourseController::class);
+
+    // Student
+    Route::get('/student/photo', [StudentController::class, 'photo'])->name('student.photo');
+    Route::resource('/student', StudentController::class);
 
     // Teacher
     Route::get('/teacher/photo', [TeacherController::class, 'photo'])->name('teacher.photo');

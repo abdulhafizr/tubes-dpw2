@@ -28,7 +28,7 @@ class TeacherController extends Controller
     public function index(): View|Factory|Application
     {
         return view('admin.teachers.index', [
-            'teachers' => Teacher::paginate(10)
+            'teachers' => Teacher::query()->paginate(10)
         ]);
     }
 
@@ -48,7 +48,7 @@ class TeacherController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return RedirectResponse|Response
      */
     public function store(Request $request): Response|RedirectResponse
@@ -97,7 +97,7 @@ class TeacherController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param Teacher $teacher
      * @return Application|Redirector|RedirectResponse
      */
@@ -188,6 +188,7 @@ class TeacherController extends Controller
         } else {
             if (!$isUpdate) $teacher->setAttribute('photo', 'img/default-avatar.svg');
         }
+
         return $teacher->save();
     }
 }

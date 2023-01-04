@@ -22,8 +22,10 @@ class CourseController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $courses = Course::paginate(10);
-        return view('admin.courses.index')->with('courses', $courses);
+        $courses = Course::query()->paginate(10);
+        return view('admin.courses.index', [
+            'courses' => $courses
+        ]);
     }
 
     /**
@@ -35,7 +37,7 @@ class CourseController extends Controller
     {
         return view("admin.courses.create", [
             "course" => new Course(),
-            "teachers" => Teacher::query()->orderBy('name', 'asc')->get()
+            "teachers" => Teacher::query()->orderBy('name')->get()
         ]);
     }
 

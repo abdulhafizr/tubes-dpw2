@@ -1,8 +1,8 @@
 @extends("admin.template")
 
-@section("header_title", "DAFTAR PELAJARAN")
+@section("header_title", "DAFTAR SISWA")
 @section("header_menu", "Dashboard")
-@section("header_submenu", "Pelajaran")
+@section("header_submenu", "Siswa")
 
 @section('head')
     <!-- DataTables -->
@@ -19,10 +19,10 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
-                                <h3 class="card-title">Table daftar pelajaran</h3>
+                                <h3 class="card-title">Table daftar guru</h3>
                             </div>
                             <div class="col d-flex justify-content-end">
-                                <a href="{{ route('course.create') }}" class="btn btn-primary">Tambah</a>
+                                <a href="{{ route('student.create') }}" class="btn btn-primary">Tambah</a>
                             </div>
                         </div>
                     </div>
@@ -47,26 +47,41 @@
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example2"
                                                 rowspan="1" colspan="1" aria-sort="ascending"
                                                 aria-label="Rendering engine: activate to sort column descending">
-                                                Nama Pelajaran
+                                                Foto
+                                            </th>
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example2"
+                                                rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Rendering engine: activate to sort column descending">
+                                                NIS
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending">
-                                                Jam Mulai
+                                                Nama
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                                 style="">
-                                                Jam Selesai
+                                                Alamat
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1"
                                                 aria-label="Engine version: activate to sort column ascending" style="">
-                                                Kelas
+                                                Tempat Lahir
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                                 style="">
-                                                Guru
+                                                Tanggal Lahir
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                                style="">
+                                                Telepon
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                                style="">
+                                                Jenis Kelamin
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="CSS grade: activate to sort column ascending"
@@ -76,28 +91,26 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($courses as $course)
+                                        @foreach($students as $student)
                                             <tr class="{{ $loop->index % 2 == 0 ? "odd" : 'even'}}">
-                                                <td class="dtr-control sorting_1"
-                                                    tabindex="0">{{ $loop->iteration }}</td>
-                                                <td>{{ $course->name }}</td>
-                                                <td>{{ $course->start_time }}</td>
-                                                <td style="">{{ $course->end_time }}</td>
-                                                <td style="">{{ $course->class_name }}</td>
-                                                <td style="">{{ $course->teacher_name }}</td>
-                                                <td style="">
-                                                    <div class="row">
-                                                        <div class="col col-sm-12 col-md-6">
-                                                            <a href="{{ route('course.edit', ['course' => $course]) }}" type="button" class="btn btn-block btn-warning btn-sm">Edit</a>
-                                                        </div>
-                                                        <div class="col col-sm-12 col-md-6">
-                                                            <form method="post" action="{{ route('course.destroy', ['course' => $course]) }}">
-                                                                @csrf
-                                                                @method('delete')
-                                                                <button type="submit" class="btn btn-block btn-danger btn-sm show_confirm">Hapus</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                                <td class="dtr-control sorting_1" tabindex="0">{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <img src="{{ asset("$student->photo") }}" width="80" height="80" class="img-thumbnail" alt="foto guru">
+                                                </td>
+                                                <td>{{ $student->nis }}</td>
+                                                <td>{{ $student->name }}</td>
+                                                <td>{{ $student->address }}</td>
+                                                <td>{{ $student->place_of_birth }}</td>
+                                                <td>{{ $student->date_of_birth }}</td>
+                                                <td>{{ $student->phone }}</td>
+                                                <td>{{ $student->gender }}</td>
+                                                <td>
+                                                    <a href="{{ route('student.edit', ['student' => $student]) }}" type="button" class="btn btn-block btn-warning btn-sm mb-2">Edit</a>
+                                                    <form method="post" action="{{ route('student.destroy', ['student' => $student]) }}">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-block btn-danger btn-sm show_confirm">Hapus</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -105,18 +118,21 @@
                                         <tfoot>
                                         <tr>
                                             <th rowspan="1" colspan="1">No</th>
-                                            <th rowspan="1" colspan="1">Nama Kelas</th>
-                                            <th rowspan="1" colspan="1">Jam Mulai</th>
-                                            <th rowspan="1" colspan="1" style="">Jam Selesai</th>
-                                            <th rowspan="1" colspan="1" style="">Kelas</th>
-                                            <th rowspan="1" colspan="1" style="">Guru</th>
-                                            <th rowspan="1" colspan="1" style="">Aksi</th>
+                                            <th rowspan="1" colspan="1">Foto</th>
+                                            <th rowspan="1" colspan="1">NIP</th>
+                                            <th rowspan="1" colspan="1">Nama</th>
+                                            <th rowspan="1" colspan="1">Alamat</th>
+                                            <th rowspan="1" colspan="1">Tempat Lahir</th>
+                                            <th rowspan="1" colspan="1">Tanggal Lahir</th>
+                                            <th rowspan="1" colspan="1">Telepon</th>
+                                            <th rowspan="1" colspan="1">Jenis Kelamin</th>
+                                            <th rowspan="1" colspan="1">Aksi</th>
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                             </div>
-                            {{ $courses->links() }}
+                            {{ $students->links() }}
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -136,8 +152,8 @@
             const form =  $(this).closest("form");
             event.preventDefault();
             Swal.fire({
-                title: 'Apakah kamu yakin ingin menghapus pelajaran ini?',
-                text: "Jika kamu menghapus pelajaran ini, pelajaran ini akan hilang selamanya!",
+                title: 'Apakah kamu yakin ingin menghapus guru ini?',
+                text: "Jika kamu menghapus guru ini, guru ini akan hilang selamanya!",
                 icon: "warning",
                 confirmButtonText: 'Ok',
                 cancelButtonText: 'Batal',

@@ -118,6 +118,7 @@
                                         <tfoot>
                                         <tr>
                                             <th rowspan="1" colspan="1">No</th>
+                                            <th rowspan="1" colspan="1">Foto</th>
                                             <th rowspan="1" colspan="1">NIP</th>
                                             <th rowspan="1" colspan="1">Nama</th>
                                             <th rowspan="1" colspan="1">Alamat</th>
@@ -145,7 +146,7 @@
 @endsection
 
 @section('script')
-    <script src="/vendor/sweetalert/sweetalert.all.js"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script type="text/javascript">
         $('.show_confirm').click(function(event) {
             const form =  $(this).closest("form");
