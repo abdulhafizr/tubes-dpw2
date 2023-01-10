@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('inventory') }}" class="nav-link {{Request::is('dashboard/inventory*') ? 'active' : ''}}">
+                    <a href="{{ route('inventory.index') }}" class="nav-link {{Request::is('dashboard/inventory*') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>Inventori</p>
                     </a>

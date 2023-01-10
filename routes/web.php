@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -29,19 +30,15 @@ Route::prefix("/dashboard")->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-    Route::get('/inventory', function () {
-        return view('admin.inventori');
-    })->name('inventory');
-    Route::get('/student', function () {
-        return view('admin.siswa');
-    })->name('student');
-
 
     // Course
     Route::resource('/course', CourseController::class);
 
     // ClassRoom
     Route::resource('/class-room', ClassRoomController::class);
+
+    // Inventories
+    Route::resource('/inventory', InventoryController::class);
 
     // Student
     Route::get('/student/photo', [StudentController::class, 'photo'])->name('student.photo');
