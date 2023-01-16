@@ -20,7 +20,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
     {{--  Custom CSS  --}}
     <style>
         .text-nav-item {
-            color: #c2c7d0!important;
+            color: #fff !important;
+        }
+
+        .main-sidebar, .main-sidebar::before {
+            transition: margin-left .3s ease-in-out, width .3s ease-in-out;
+            width: 380px;
+        }
+
+        .sidebar-mini.sidebar-collapse .main-sidebar:not(.sidebar-no-expand).sidebar-focused, .sidebar-mini.sidebar-collapse .main-sidebar:not(.sidebar-no-expand):hover {
+            width: 380px;
+        }
+
+        body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
+            transition: margin-left .3s ease-in-out;
+            margin-left: 380px;
+        }
+
+        .sidebar-mini .main-sidebar .nav-link, .sidebar-mini-md .main-sidebar .nav-link, .sidebar-mini-xs .main-sidebar .nav-link {
+            width: 100%;
+            transition: width ease-in-out .3s;
+        }
+
+        .sidebar-collapse.sidebar-mini .main-sidebar.sidebar-focused:not(.sidebar-no-expand) .nav-link, .sidebar-collapse.sidebar-mini .main-sidebar:hover:not(.sidebar-no-expand) .nav-link, .sidebar-collapse.sidebar-mini-md .main-sidebar.sidebar-focused:not(.sidebar-no-expand) .nav-link, .sidebar-collapse.sidebar-mini-md .main-sidebar:hover:not(.sidebar-no-expand) .nav-link, .sidebar-collapse.sidebar-mini-xs .main-sidebar.sidebar-focused:not(.sidebar-no-expand) .nav-link, .sidebar-collapse.sidebar-mini-xs .main-sidebar:hover:not(.sidebar-no-expand) .nav-link {
+            width: 100%;
+        }
+
+        .nav-link {
+            display: block;
+            padding: .8rem 1rem !important;
+        }
+
+        .small-box > .inner {
+            padding: 30px !important;
+        }
+
+        [class*=sidebar-dark-] {
+            background: #dc3545 linear-gradient(180deg, #e15361, #dc3545) repeat-x !important;
+        }
+
+        .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+            background-color: #fff;
+            color: #000;
+        }
+
+        [class*=sidebar-dark-] .sidebar a {
+            color: #fff;
         }
     </style>
     @yield('head')
@@ -55,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <div class="content">
-           @yield("content")
+            @yield("content")
         </div>
 
     </div>
