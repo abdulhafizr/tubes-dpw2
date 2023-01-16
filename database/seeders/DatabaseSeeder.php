@@ -8,7 +8,9 @@ use App\Models\Course;
 use App\Models\Inventory;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,9 +29,10 @@ class DatabaseSeeder extends Seeder
         Teacher::factory(25)->create();
         Student::factory(25)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+         User::factory()->create([
+             'name' => 'Admin',
+             'email' => 'admin@gmail.com',
+             'password' => Hash::make('password')
+         ]);
     }
 }

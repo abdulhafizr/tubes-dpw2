@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +19,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('admin.dashboard');
-//});
-
 Route::redirect('/', '/dashboard');
 
-Route::prefix("/dashboard")->group(function () {
+Route::get('/login', [AuthController::class, 'index'])
+    ->name('login')
+    ->middleware('guest');
+
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('auth.login')
+    ->middleware('guest');
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('auth.logout');
+
+Route::prefix("/dashboard")->middleware('auth')->group(function () {
 
     // GET METHOD
     Route::get('/', function () {
