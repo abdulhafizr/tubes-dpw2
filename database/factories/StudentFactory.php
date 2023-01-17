@@ -17,14 +17,14 @@ class StudentFactory extends Factory
     public function definition()
     {
         $default_photos = [
-            'user1-128x128.jpg',
-            'user2-160x160.jpg',
-            'user3-128x128.jpg',
-            'user4-128x128.jpg',
-            'user5-128x128.jpg',
-            'user6-128x128.jpg',
-            'user7-128x128.jpg',
-            'user8-128x128.jpg'
+            'students/student-1.png',
+            'students/student-2.png',
+            'students/student-3.png',
+            'students/student-4.png',
+            'students/student-5.png',
+            'students/student-6.png',
+            'students/student-7.png',
+            'students/student-8.png'
         ];
         return [
             'teacher_id' => $this->faker->numberBetween(1, 25),

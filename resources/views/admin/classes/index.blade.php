@@ -94,7 +94,7 @@
                                                     tabindex="0">{{ $loop->iteration }}</td>
                                                 <td>{{ $class_room->code }}</td>
                                                 <td>
-                                                    <img src="{{ asset("$class_room->photo") }}" width="80" height="80" class="img-thumbnail" alt="foto ruang kelas">
+                                                    <img src="{{ asset($class_room->photo) }}" width="80" height="80" class="img-thumbnail" alt="foto ruang kelas">
                                                 </td>
                                                 <td>{{ $class_room->name }}</td>
                                                 <td>{{ $class_room->tables_amount }}</td>

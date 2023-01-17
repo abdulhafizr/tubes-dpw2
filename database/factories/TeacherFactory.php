@@ -17,14 +17,14 @@ class TeacherFactory extends Factory
     public function definition()
     {
         $default_photos = [
-            'user1-128x128.jpg',
-            'user2-160x160.jpg',
-            'user3-128x128.jpg',
-            'user4-128x128.jpg',
-            'user5-128x128.jpg',
-            'user6-128x128.jpg',
-            'user7-128x128.jpg',
-            'user8-128x128.jpg'
+            'teachers/teacher-1.png',
+            'teachers/teacher-2.png',
+            'teachers/teacher-3.png',
+            'teachers/teacher-4.png',
+            'teachers/teacher-5.png',
+            'teachers/teacher-6.png',
+            'teachers/teacher-7.png',
+            'teachers/teacher-8.png'
         ];
         return [
             'nip' => $this->faker->randomNumber(5, true),

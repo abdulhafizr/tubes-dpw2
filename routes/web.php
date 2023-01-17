@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
@@ -35,9 +36,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::prefix("/dashboard")->middleware('auth')->group(function () {
 
     // GET METHOD
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Course
     Route::resource('/course', CourseController::class);

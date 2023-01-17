@@ -31,8 +31,8 @@ class CourseFactory extends Factory
         return [
             'name' => $courses[$this->faker->randomDigit()],
             'teacher_id' => $this->faker->numberBetween(1, 25),
-            'start_time' => $this->faker->numberBetween(4, 12) . ':' . $this->faker->numberBetween(0, 60),
-            'end_time' => $this->faker->numberBetween(4, 12) . ':' . $this->faker->numberBetween(0, 60),
+            'start_time' => $this->faker->numberBetween(6, 8) . ':' . $this->faker->numberBetween(0, 60),
+            'end_time' => $this->faker->numberBetween(9, 12) . ':' . $this->faker->numberBetween(0, 60),
             'class_name' => 'IPA ' . $this->faker->numberBetween(7, 9) . $this->faker->randomElement(['A', 'B', 'C']),
         ];
     }

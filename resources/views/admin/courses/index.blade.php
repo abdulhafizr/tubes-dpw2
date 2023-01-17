@@ -47,6 +47,11 @@
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example2"
                                                 rowspan="1" colspan="1" aria-sort="ascending"
                                                 aria-label="Rendering engine: activate to sort column descending">
+                                                Foto
+                                            </th>
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example2"
+                                                rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Rendering engine: activate to sort column descending">
                                                 Nama Pelajaran
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
@@ -55,22 +60,22 @@
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                                style="">
+                                            >
                                                 Jam Selesai
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1"
-                                                aria-label="Engine version: activate to sort column ascending" style="">
+                                                aria-label="Engine version: activate to sort column ascending">
                                                 Kelas
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                style="">
+                                            >
                                                 Guru
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                style="">
+                                            >
                                                 Aksi
                                             </th>
                                         </tr>
@@ -80,21 +85,29 @@
                                             <tr class="{{ $loop->index % 2 == 0 ? "odd" : 'even'}}">
                                                 <td class="dtr-control sorting_1"
                                                     tabindex="0">{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <img src="{{ asset($course->teacher->photo) }}" width="80" height="80" class="img-thumbnail" alt="foto guru">
+                                                </td>
                                                 <td>{{ $course->name }}</td>
                                                 <td>{{ $course->start_time }}</td>
-                                                <td style="">{{ $course->end_time }}</td>
-                                                <td style="">{{ $course->class_name }}</td>
-                                                <td style="">{{ $course->teacher_name }}</td>
-                                                <td style="">
+                                                <td>{{ $course->end_time }}</td>
+                                                <td>{{ $course->class_name }}</td>
+                                                <td>{{ $course->teacher->name }}</td>
+                                                <td>
                                                     <div class="row">
                                                         <div class="col col-sm-12 col-md-6">
-                                                            <a href="{{ route('course.edit', ['course' => $course]) }}" type="button" class="btn btn-block btn-warning btn-sm">Edit</a>
+                                                            <a href="{{ route('course.edit', ['course' => $course]) }}"
+                                                               type="button" class="btn btn-block btn-warning btn-sm">Edit</a>
                                                         </div>
                                                         <div class="col col-sm-12 col-md-6">
-                                                            <form method="post" action="{{ route('course.destroy', ['course' => $course]) }}">
+                                                            <form method="post"
+                                                                  action="{{ route('course.destroy', ['course' => $course]) }}">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button type="submit" class="btn btn-block btn-danger btn-sm show_confirm">Hapus</button>
+                                                                <button type="submit"
+                                                                        class="btn btn-block btn-danger btn-sm show_confirm">
+                                                                    Hapus
+                                                                </button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -107,10 +120,10 @@
                                             <th rowspan="1" colspan="1">No</th>
                                             <th rowspan="1" colspan="1">Nama Kelas</th>
                                             <th rowspan="1" colspan="1">Jam Mulai</th>
-                                            <th rowspan="1" colspan="1" style="">Jam Selesai</th>
-                                            <th rowspan="1" colspan="1" style="">Kelas</th>
-                                            <th rowspan="1" colspan="1" style="">Guru</th>
-                                            <th rowspan="1" colspan="1" style="">Aksi</th>
+                                            <th rowspan="1" colspan="1">Jam Selesai</th>
+                                            <th rowspan="1" colspan="1">Kelas</th>
+                                            <th rowspan="1" colspan="1">Guru</th>
+                                            <th rowspan="1" colspan="1">Aksi</th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -132,8 +145,8 @@
 @section('script')
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script type="text/javascript">
-        $('.show_confirm').click(function(event) {
-            const form =  $(this).closest("form");
+        $('.show_confirm').click(function (event) {
+            const form = $(this).closest("form");
             event.preventDefault();
             Swal.fire({
                 title: 'Apakah kamu yakin ingin menghapus pelajaran ini?',
@@ -146,11 +159,11 @@
                 confirmButtonColor: '#dc3545',
                 focusConfirm: false,
             })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
         });
 
     </script>
