@@ -1,8 +1,8 @@
 @extends("admin.template")
 
-@section("header_title", "DAFTAR INVENTORI")
+@section("header_title", "DAFTAR PELAJARAN")
 @section("header_menu", "Dashboard")
-@section("header_submenu", "Inventori")
+@section("header_submenu", "Pelajaran")
 
 @section('head')
     <!-- DataTables -->
@@ -19,10 +19,10 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
-                                <h3 class="card-title">Table daftar guru</h3>
+                                <h3 class="card-title">Table daftar pelajaran</h3>
                             </div>
                             <div class="col d-flex justify-content-end">
-                                <a href="{{ route('inventory.create') }}" class="btn btn-primary">Tambah</a>
+                                <a href="{{ route('course.create') }}" class="btn btn-primary">Tambah</a>
                             </div>
                         </div>
                     </div>
@@ -52,57 +52,66 @@
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example2"
                                                 rowspan="1" colspan="1" aria-sort="ascending"
                                                 aria-label="Rendering engine: activate to sort column descending">
-                                                Nama
+                                                Nama Pelajaran
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="Browser: activate to sort column ascending">
-                                                Total
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                                colspan="1" aria-label="Browser: activate to sort column ascending">
-                                                Digunakan
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                                colspan="1" aria-label="Browser: activate to sort column ascending">
-                                                Rusak
+                                                Jam Mulai
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                                style="">
-                                                Stok
+                                            >
+                                                Jam Selesai
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1"
+                                                aria-label="Engine version: activate to sort column ascending">
+                                                Kelas
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                 colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                style="">
+                                            >
+                                                Guru
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                            >
                                                 Aksi
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($inventories as $inventory)
+                                        @foreach($courses as $course)
                                             <tr class="{{ $loop->index % 2 == 0 ? "odd" : 'even'}}">
-                                                <td class="dtr-control sorting_1" tabindex="0">{{ $loop->iteration }}</td>
+                                                <td class="dtr-control sorting_1"
+                                                    tabindex="0">{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <img src="{{ asset("$inventory->photo") }}" width="80" height="80" class="img-thumbnail" alt="{{ $inventory->nameØ }}">
+                                                    <img src="{{ asset($course->teacher->photo) }}" width="80" height="80" class="img-thumbnail" alt="foto guru">
                                                 </td>
-                                                <td>{{ $inventory->name }}</td>
-                                                <td>{{ $inventory->total }}</td>
-                                                <td>{{ $inventory->used }}</td>
-                                                <td>{{ $inventory->broken }}</td>
-                                                <td>{{ $inventory->stock }}</td>
+                                                <td>{{ $course->name }}</td>
+                                                <td>{{ $course->start_time }}</td>
+                                                <td>{{ $course->end_time }}</td>
+                                                <td>{{ $course->class_name }}</td>
+                                                <td>{{ $course->teacher->name }}</td>
                                                 <td>
                                                     <div class="row">
                                                         <div class="col col-sm-12 col-md-6">
-                                                            <a href="{{ route('inventory.edit', ['inventory' => $inventory]) }}" type="button" class="btn btn-block btn-warning btn-sm mb-2">Edit</a>
+                                                            <a href="{{ route('course.edit', ['course' => $course]) }}"
+                                                               type="button" class="btn btn-block btn-warning btn-sm">Edit</a>
                                                         </div>
                                                         <div class="col col-sm-12 col-md-6">
-                                                            <form method="post" action="{{ route('inventory.destroy', ['inventory' => $inventory]) }}">
+                                                            <form method="post"
+                                                                  action="{{ route('course.destroy', ['course' => $course]) }}">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button type="submit" class="btn btn-block btn-danger btn-sm show_confirm">Hapus</button>
+                                                                <button type="submit"
+                                                                        class="btn btn-block btn-danger btn-sm show_confirm">
+                                                                    Hapus
+                                                                </button>
                                                             </form>
                                                         </div>
-                                                    </div></td>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -110,18 +119,17 @@
                                         <tr>
                                             <th rowspan="1" colspan="1">No</th>
                                             <th rowspan="1" colspan="1">Foto</th>
-                                            <th rowspan="1" colspan="1">Nama</th>
-                                            <th rowspan="1" colspan="1">Total</th>
-                                            <th rowspan="1" colspan="1">Digunakan</th>
-                                            <th rowspan="1" colspan="1">Rusak</th>
-                                            <th rowspan="1" colspan="1">Stok</th>
+                                            <th rowspan="1" colspan="1">Nama Kelas</th>
+                                            <th rowspan="1" colspan="1">Jam Mulai</th>
+                                            <th rowspan="1" colspan="1">Jam Selesai</th>
+                                            <th rowspan="1" colspan="1">Kelas</th>
+                                            <th rowspan="1" colspan="1">Guru</th>
                                             <th rowspan="1" colspan="1">Aksi</th>
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                             </div>
-                            {{ $inventories->links() }}
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -137,12 +145,12 @@
 @section('script')
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script type="text/javascript">
-        $('.show_confirm').click(function(event) {
-            const form =  $(this).closest("form");
+        $('.show_confirm').click(function (event) {
+            const form = $(this).closest("form");
             event.preventDefault();
             Swal.fire({
-                title: 'Apakah kamu yakin ingin menghapus guru ini?',
-                text: "Jika kamu menghapus guru ini, guru ini akan hilang selamanya!",
+                title: 'Apakah kamu yakin ingin menghapus pelajaran ini?',
+                text: "Jika kamu menghapus pelajaran ini, pelajaran ini akan hilang selamanya!",
                 icon: "warning",
                 confirmButtonText: 'Ok',
                 cancelButtonText: 'Batal',
@@ -151,11 +159,11 @@
                 confirmButtonColor: '#dc3545',
                 focusConfirm: false,
             })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
         });
 
     </script>

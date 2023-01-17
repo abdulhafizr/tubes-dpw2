@@ -109,8 +109,10 @@
                                                     <form method="post" action="{{ route('teacher.destroy', ['teacher' => $teacher]) }}">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-block btn-danger btn-sm show_confirm">Hapus</button>
+                                                        <button type="submit" class="btn btn-block btn-danger btn-sm mb-2 show_confirm">Hapus</button>
                                                     </form>
+                                                    <a href="{{ route('teacher.course', ['teacher' => $teacher]) }}" class="btn btn-block btn-info btn-sm mb-2">Pelajaran</a>
+                                                    <a href="{{ route('teacher.student', ['teacher' => $teacher]) }}" class="btn btn-block btn-secondary btn-sm mb-2">Siswa</a>
                                                 </td>
                                             </tr>
                                         @endforeach

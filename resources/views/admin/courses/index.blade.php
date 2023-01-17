@@ -118,6 +118,7 @@
                                         <tfoot>
                                         <tr>
                                             <th rowspan="1" colspan="1">No</th>
+                                            <th rowspan="1" colspan="1">Foto</th>
                                             <th rowspan="1" colspan="1">Nama Kelas</th>
                                             <th rowspan="1" colspan="1">Jam Mulai</th>
                                             <th rowspan="1" colspan="1">Jam Selesai</th>

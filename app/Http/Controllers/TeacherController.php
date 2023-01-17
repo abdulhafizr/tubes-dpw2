@@ -6,6 +6,7 @@ use App\Models\Teacher;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -140,10 +141,33 @@ class TeacherController extends Controller
         return back();
     }
 
-    public function photo(Request $request) {
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function photo(Request $request): JsonResponse
+    {
         $teacher = Teacher::query()->find($request->id);
         return response()->json([
             'photo' => $teacher->photo
+        ]);
+    }
+
+    /**
+     * @param Teacher $teacher
+     * @return Factory|View|Application
+     */
+    public function courses(Teacher $teacher): Factory|View|Application
+    {
+        return view('admin.teachers.course', [
+            'courses' => $teacher->courses
+        ]);
+    }
+
+    public function students(Teacher $teacher)
+    {
+        return view('admin.teachers.student', [
+            'students' => $teacher->students
         ]);
     }
 

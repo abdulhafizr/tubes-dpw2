@@ -53,6 +53,8 @@ Route::prefix("/dashboard")->middleware('auth')->group(function () {
 
     // Teacher
     Route::get('/teacher/photo', [TeacherController::class, 'photo'])->name('teacher.photo');
+    Route::get('/teacher/{teacher:id}/course', [TeacherController::class, 'courses'])->name('teacher.course');
+    Route::get('/teacher/{teacher:id}/student', [TeacherController::class, 'students'])->name('teacher.student');
     Route::resource('/teacher', TeacherController::class);
 });
 
